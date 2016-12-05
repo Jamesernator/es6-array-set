@@ -1,11 +1,19 @@
 {
     "name": "es6-array-set",
-    "main": "./arraySet.js",
+    "main": "./ArraySet-commonjs.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/Jamesernator/es6-array-set"
     },
     "version": "1.0.0",
     "author": "James \"The Jamesernator\" Browning",
-    "description": "This is a ES6 Set-Like structure for using Arrays as keys"
+    "description": "This is a ES6 Set-Like structure for using Arrays as values",
+    "devDependencies": {
+        "babel-cli": "latest",
+        "babel-plugin-transform-es2015-modules-commonjs": "latest",
+        "babel-plugin-add-module-exports": "latest"
+    },
+    "scripts": {
+        "prepublish": "babel ArraySet.js > ArraySet-commonjs.js"
+    }
 }
