@@ -10,7 +10,7 @@ export default class ArraySet {
         */
         this.size = 0
         this._subSets = new Map()
-        this._has = false
+        this._hasItem = false
         this._serialize = serialize
         if (iterable != null) {
             for (const value of iterable) {
@@ -30,11 +30,11 @@ export default class ArraySet {
         /* This actually adds the array to the ArraySet, returns true
             if the */
         if (array.length === 0) {
-            if (this._has) {
+            if (this._hasItem) {
                 return false
             } else {
                 this.size += 1
-                this._has = true
+                this._hasItem = true
                 return true
             }
         } else {
@@ -56,7 +56,7 @@ export default class ArraySet {
         /* Removes all elements from the ArraySet */
         this.size = 0
         this._subSets = new Map()
-        this._has = false
+        this._hasItem = false
     }
 
     delete(array) {
@@ -68,9 +68,9 @@ export default class ArraySet {
     _delete(array) {
         const [first, ...rest] = array
         if (array.length === 0) {
-            if (this._has) {
+            if (this._hasItem) {
                 this.size -= 1
-                this._has = false
+                this._hasItem = false
                 return true
             } else {
                 return false
@@ -111,7 +111,7 @@ export default class ArraySet {
     _has(array) {
         const [first, ...rest] = array
         if (array.length === 0) {
-            return this._has
+            return this._hasItem
         } else if (!this._subSets.has(first)) {
             return false
         } else {
@@ -124,7 +124,7 @@ export default class ArraySet {
     }
 
     *values() {
-        if (this._has) {
+        if (this._hasItem) {
             yield []
         }
         for (const [value, subSet] of this._subSets) {
